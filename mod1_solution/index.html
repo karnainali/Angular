@@ -1,27 +1,32 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="LunchChecker">
   <head>
     <title>Lunch Checker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src="angular.js"></script>
+    <script src="app.js"></script>
     <style>
       .message { font-size: 1.3em; font-weight: bold; }
     </style>
   </head>
-<body>
+<body ng-controller="CheckerController">
    <div class="container">
      <h1>Lunch Checker</h1>
 
          <div class="form-group">
              <input id="lunch-menu" type="text"
              placeholder="list comma separated dishes you usually have for lunch"
-             class="form-control">
+             class="form-control" ng-model="inputItems">
          </div>
          <div class="form-group">
-             <button class="btn btn-default">Check If Too Much</button>
+             <button class="btn btn-default" ng-click="checkItems();">Check If Too Much</button>
          </div>
          <div class="form-group message">
-           <!-- Your message can go here. -->
+          <div ng-if="showMessage" ng-class="{ 'red-text': message === 'Enter Data please', 'green-text': message === 'ENJOY', 'red-text': message === 'TOO MUCH', 'red-text': message === 'Note: Do not put comma at the end of item also No empty or invalid items'}">
+            {{ message }}
+          </div>
          </div>
    </div>
 
